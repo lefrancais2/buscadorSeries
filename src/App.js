@@ -1,23 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { GlobalStyle } from "./styles-components/reset";
+import {Header,Main,Footer, FormularioSection} from './styles-components/containers';
+import Formulario from "./components/Formulario";
+import { useState } from "react";
+import SeriesCard from "./components/SeriesCard";
+
+
+const container = {
+  display: "flex",
+  flexDirection: "column",
+  minHeight: "100vh"
+}
 
 function App() {
+  const [data, setData] = useState({});
+  //console.log("datos",data);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={container}>
+      <GlobalStyle/>
+      <Header>
+        <h1>Buscador de series</h1>
+      </Header>
+      <Main>
+        <FormularioSection>
+          <Formulario setData={setData}/>
+        </FormularioSection>
+
+        <SeriesCard data={data}/>
+
+      </Main>
+      <Footer>
+        <p>Página desarrollada por OsGod</p>
+      </Footer>
     </div>
   );
 }
